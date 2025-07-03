@@ -1,0 +1,40 @@
+# Dependencies
+node_modules/
+
+# Next.js
+.next/
+out/
+
+# Build files
+dist/
+build/
+
+# Environment variables
+.env*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDE/Editor
+.vscode/
+.idea/
+*.suo
+*.swp
+*.swo
+
+# System files
+.DS_Store
+Thumbs.db
+
+# TypeScript cache
+*.tsbuildinfo
+
+# npm
+package-lock.json
+
+# ESLint/Prettier cache
+.eslintcache
+.prettiercache
+
