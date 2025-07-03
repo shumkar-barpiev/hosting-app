@@ -24,6 +24,9 @@ const Header: React.FC = () => {
     <Box
       component="header"
       sx={{
+        position: "sticky",
+        top: 0,
+        zIndex: 1100,
         bgcolor: COLORS.WHITE,
         py: 3,
       }}
