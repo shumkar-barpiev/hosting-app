@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
 import ThemeRegistry from "@/components/ThemeRegistry/ThemeRegistry";
-import { Box, Container } from "@mui/material";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +21,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <ThemeRegistry>
           <Header />
-          <Container maxWidth="xl">{children}</Container>
+          {children}
           <Footer />
         </ThemeRegistry>
       </body>

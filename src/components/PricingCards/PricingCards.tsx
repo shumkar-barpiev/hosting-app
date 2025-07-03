@@ -120,97 +120,114 @@ const featureList = (features: VpsPlan["features"]) => {
 };
 
 const PricingCards = () => (
-  <Box>
-    <Typography
-      variant="h5"
-      sx={{ textAlign: "center", mb: 2, textTransform: "uppercase" }}
-    >
-      тарифы vps
-    </Typography>
-    <Box
-      sx={{
-        display: "flex",
-        gap: 12,
-        flexWrap: "wrap",
-        justifyContent: "center",
-        padding: "10px",
-      }}
-    >
-      {plans.map((plan) => (
-        <Card
-          key={plan.name}
-          variant="outlined"
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            height: "100%",
-            width: "300px",
-            borderRadius: "16px",
-            border: "none",
-            padding: 0,
-            margin: 0,
-            ":hover": {
-              cursor: "pointer",
-              boxShadow: "0 8px 24px 0 rgba(44, 62, 80, 0.18)",
-              transform: "translateY(-4px)",
-              transition: "box-shadow 0.3s, transform 0.3s",
-            },
-          }}
-        >
-          <CardHeader
-            title={
-              <Typography
-                sx={{ fontSize: "18px", fontWeight: 500, textAlign: "center" }}
-              >
-                {plan.name}
-              </Typography>
-            }
+  <Box
+    sx={{
+      bgcolor: "#33503E0D",
+      width: 1,
+      minHeight: "80vh",
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+    }}
+  >
+    <Container maxWidth="xl" sx={{ py: 6 }}>
+      <Typography
+        variant="h5"
+        sx={{ textAlign: "center", mb: 6, textTransform: "uppercase" }}
+      >
+        тарифы vps
+      </Typography>
+      <Box
+        sx={{
+          display: "flex",
+          gap: 12,
+          flexWrap: "wrap",
+          justifyContent: "center",
+          padding: "10px",
+        }}
+      >
+        {plans.map((plan) => (
+          <Card
+            key={plan.name}
+            variant="outlined"
             sx={{
-              fontSize: "14px",
-              padding: "8px 0",
-              fontWeight: "bold",
-              textAlign: "center",
-              color: COLORS.WHITE,
-              backgroundColor: COLORS.GREEN_LIGHT,
-            }}
-          />
-          <CardContent sx={{ padding: 0, textAlign: "center", flexGrow: 1 }}>
-            <Container sx={{ py: 2 }}>
-              {priceBlock(plan.monthlyPrice, "/ месяц")}
-              <Typography
-                sx={{
-                  marginBottom: "4px",
-                  fontSize: "13px",
-                  fontWeight: "bold",
-                }}
-              >
-                или
-              </Typography>
-              {priceBlock(plan.yearlyPrice, "/ год")}
-              {featureList(plan.features)}
-            </Container>
-          </CardContent>
-          <Button
-            variant="contained"
-            fullWidth
-            sx={{
-              backgroundColor: COLORS.GREEN_DARK,
-              borderRadius: "0px",
-              borderBottomLeftRadius: "16px",
-              borderBottomRightRadius: "16px",
-              height: "48px",
-              color: "#fff",
-              mt: "auto", // ensures button stays at the bottom
-              "&:hover": {
-                backgroundColor: COLORS.GREEN_LIGHT,
+              display: "flex",
+              flexDirection: "column",
+              height: "100%",
+              width: "300px",
+              borderRadius: "16px",
+              border: "none",
+              padding: 0,
+              margin: 0,
+              bgcolor: "inherit",
+              ":hover": {
+                cursor: "pointer",
+                boxShadow: "0 8px 24px 0 rgba(44, 62, 80, 0.18)",
+                transform: "translateY(-4px)",
+                transition: "box-shadow 0.3s, transform 0.3s",
+                bgcolor: "white",
               },
             }}
           >
-            ЗАКАЗАТЬ
-          </Button>
-        </Card>
-      ))}
-    </Box>
+            <CardHeader
+              title={
+                <Typography
+                  sx={{
+                    fontSize: "18px",
+                    fontWeight: 500,
+                    textAlign: "center",
+                  }}
+                >
+                  {plan.name}
+                </Typography>
+              }
+              sx={{
+                fontSize: "14px",
+                padding: "8px 0",
+                fontWeight: "bold",
+                textAlign: "center",
+                color: COLORS.WHITE,
+                backgroundColor: COLORS.GREEN_LIGHT,
+              }}
+            />
+            <CardContent sx={{ padding: 0, textAlign: "center", flexGrow: 1 }}>
+              <Container sx={{ py: 2 }}>
+                {priceBlock(plan.monthlyPrice, "/ месяц")}
+                <Typography
+                  sx={{
+                    marginBottom: "4px",
+                    fontSize: "13px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  или
+                </Typography>
+                {priceBlock(plan.yearlyPrice, "/ год")}
+                {featureList(plan.features)}
+              </Container>
+            </CardContent>
+            <Button
+              variant="contained"
+              fullWidth
+              sx={{
+                backgroundColor: COLORS.GREEN_DARK,
+                borderRadius: "0px",
+                borderBottomLeftRadius: "16px",
+                borderBottomRightRadius: "16px",
+                height: "48px",
+                color: "#fff",
+                mt: "auto", // ensures button stays at the bottom
+                "&:hover": {
+                  backgroundColor: COLORS.GREEN_LIGHT,
+                },
+              }}
+            >
+              ЗАКАЗАТЬ
+            </Button>
+          </Card>
+        ))}
+      </Box>
+    </Container>
   </Box>
 );
 
