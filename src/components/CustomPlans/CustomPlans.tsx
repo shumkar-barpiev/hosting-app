@@ -66,6 +66,7 @@ const CustomPlans = () => {
   });
 
   const onSubmit = (data: CustomPlanForm) => {
+    console.log("Submitted Data:", data);
     // alert(`CPU: ${data.cpu} vCPU\nRAM: ${data.ram} GB\nSSD: ${data.ssd} GB`);
   };
 

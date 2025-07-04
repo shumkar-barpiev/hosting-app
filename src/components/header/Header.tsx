@@ -2,24 +2,10 @@
 
 import React from "react";
 import { COLORS } from "@/constants/colors";
-import { Box, Container, Typography, Button, useTheme } from "@mui/material";
+import { Box, Container, Typography, Button } from "@mui/material";
 import Image from "next/image";
 
 const Header: React.FC = () => {
-  const theme = useTheme();
-
-  const linkStyles = {
-    color: COLORS.WHITE,
-    fontSize: "14px",
-    textDecoration: "none",
-    cursor: "pointer",
-    textTransform: "uppercase",
-    letterSpacing: 1,
-    fontWeight: 400,
-    width: "fit-content",
-    "&:hover": { color: theme.palette.primary.main },
-  };
-
   return (
     <Box
       component="header"
