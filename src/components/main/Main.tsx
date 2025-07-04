@@ -3,6 +3,7 @@
 import Image from "next/image";
 import React, { useRef } from "react";
 import { COLORS } from "@/constants/colors";
+import CustomPlans from "@/components/CustomPlans/CustomPlans";
 import PricingCards from "@/components/PricingCards/PricingCards";
 import { Box, Stack, Container, Typography, Button } from "@mui/material";
 
@@ -19,7 +20,7 @@ const Main: React.FC = () => {
         <Stack direction={"row"} justifyContent={"space-between"} sx={{ p: 3 }}>
           <Stack
             direction={"column"}
-            sx={{ width: "100%", height: "100%", pl: 12 }}
+            sx={{ width: "100%", height: "100%", pl: 18 }}
           >
             <Typography
               variant="h3"
@@ -68,7 +69,7 @@ const Main: React.FC = () => {
               <Image
                 src="/images/main-page-1.png"
                 alt="main-page"
-                width={480}
+                width={470}
                 height={340}
               />
             </Box>
@@ -102,6 +103,8 @@ const Main: React.FC = () => {
       <Box ref={pricingRef}>
         <PricingCards />
       </Box>
+
+      <CustomPlans />
     </Box>
   );
 };
