@@ -5,6 +5,7 @@ import React, { useRef } from "react";
 import { COLORS } from "@/constants/colors";
 import CustomPlans from "@/components/CustomPlans/CustomPlans";
 import PricingCards from "@/components/PricingCards/PricingCards";
+import TariffDetails from "@/components/TariffDetails/TariffDetails";
 import { Box, Stack, Container, Typography, Button } from "@mui/material";
 
 const Main: React.FC = () => {
@@ -105,6 +106,7 @@ const Main: React.FC = () => {
       </Box>
 
       <CustomPlans />
+      <TariffDetails />
     </Box>
   );
 };
