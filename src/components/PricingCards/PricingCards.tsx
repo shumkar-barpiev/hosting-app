@@ -1,17 +1,9 @@
 "use client";
 
-import {
-  Card,
-  Box,
-  Stack,
-  Button,
-  CardHeader,
-  Typography,
-  CardContent,
-  Container,
-} from "@mui/material";
 import React from "react";
 import { COLORS } from "@/constants/colors";
+import { Typography, CardContent, Container } from "@mui/material";
+import { Card, Box, Stack, Button, CardHeader } from "@mui/material";
 
 type VpsPlan = {
   name: string;
@@ -154,7 +146,7 @@ const PricingCards = () => (
               display: "flex",
               flexDirection: "column",
               height: "100%",
-              width: "300px",
+              width: { xs: "90%", sm: "350px" },
               borderRadius: "16px",
               border: "none",
               padding: 0,
@@ -210,16 +202,14 @@ const PricingCards = () => (
               variant="contained"
               fullWidth
               sx={{
-                backgroundColor: COLORS.GREEN_DARK,
                 borderRadius: "0px",
                 borderBottomLeftRadius: "16px",
                 borderBottomRightRadius: "16px",
                 height: "48px",
-                color: "#fff",
                 mt: "auto",
-                "&:hover": {
-                  backgroundColor: COLORS.GREEN_LIGHT,
-                },
+                color: COLORS.WHITE,
+                bgcolor: COLORS.GREEN_DARK,
+                ":hover": { bgcolor: COLORS.GREEN_LIGHT },
               }}
             >
               ЗАКАЗАТЬ
