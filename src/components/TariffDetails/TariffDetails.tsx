@@ -24,12 +24,34 @@ const detailContentStyles = {
   fontFamily: "IBM Plex Sans, sans-serif",
 };
 
+const IdBox = (id: number) => {
+  return (
+    <Box
+      sx={{
+        minWidth: 48,
+        width: 48,
+        height: 48,
+        color: COLORS.WHITE,
+        bgcolor: COLORS.GREEN_DARK,
+        borderRadius: "50%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: "1.2rem",
+        mr: { xs: 1, sm: 2 },
+      }}
+    >
+      {id}
+    </Box>
+  );
+};
+
 const TariffDetails = () => (
   <Box
     sx={{
       bgcolor: "#33503E0D",
       width: 1,
-      minHeight: "45vh",
+      minHeight: "50vh",
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
@@ -43,74 +65,75 @@ const TariffDetails = () => (
         В тарифах включено
       </Typography>
 
-      <Stack
-        direction={{ xs: "column", sm: "row" }}
-        justifyContent="space-between"
-        alignItems="center"
-        spacing={2}
-        width={{ xs: "100%", sm: "80%", md: "75%" }}
-        mx="auto"
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          justifyContent: "center",
+          alignItems: { xs: "stretch", sm: "flex-start" },
+          gap: 2,
+          width: { xs: "100%", sm: "90%", md: "75%" },
+          mx: "auto",
+        }}
       >
-        <Stack spacing={2}>
-          {details.slice(0, 3).map((detail) => (
-            <Box
-              key={detail.id}
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
+        <Box sx={{ flex: 1, minWidth: { xs: "100%", sm: 260, md: 320 } }}>
+          <Stack spacing={2}>
+            {details.slice(0, 3).map((detail) => (
               <Box
+                key={detail.id}
                 sx={{
-                  width: 48,
-                  height: 48,
-                  color: COLORS.WHITE,
-                  bgcolor: COLORS.GREEN_DARK,
-                  borderRadius: "50%",
-                  textAlign: "center",
-                  lineHeight: "48px",
-                  fontSize: "1.2rem",
-                  mr: 2,
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  mb: { xs: 2, sm: 0 },
                 }}
               >
-                {detail.id}
+                {IdBox(detail.id)}
+                <Typography
+                  sx={{
+                    ...detailContentStyles,
+                    fontSize: { xs: "14px", sm: "16px", md: "18px" },
+                    wordBreak: "break-word",
+                  }}
+                >
+                  {detail.content}
+                </Typography>
               </Box>
-              <Typography sx={detailContentStyles}>{detail.content}</Typography>
-            </Box>
-          ))}
-        </Stack>
+            ))}
+          </Stack>
+        </Box>
 
-        <Stack spacing={2}>
-          {details.slice(3).map((detail) => (
-            <Box
-              key={detail.id}
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
+        <Box
+          sx={{
+            flex: 1,
+            minWidth: { xs: "100%", sm: 260, md: 320 },
+          }}
+        >
+          <Stack spacing={2}>
+            {details.slice(3).map((detail) => (
               <Box
+                key={detail.id}
                 sx={{
-                  width: 48,
-                  height: 48,
-                  color: COLORS.WHITE,
-                  bgcolor: COLORS.GREEN_DARK,
-                  borderRadius: "50%",
-                  textAlign: "center",
-                  lineHeight: "48px",
-                  fontSize: "1.2rem",
-                  mr: 2,
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  mb: { xs: 2, sm: 0 },
                 }}
               >
-                {detail.id}
+                {IdBox(detail.id)}
+                <Typography
+                  sx={{
+                    ...detailContentStyles,
+                    fontSize: { xs: "16px", sm: "18px" },
+                  }}
+                >
+                  {detail.content}
+                </Typography>
               </Box>
-              <Typography sx={detailContentStyles}>{detail.content}</Typography>
-            </Box>
-          ))}
-        </Stack>
-      </Stack>
+            ))}
+          </Stack>
+        </Box>
+      </Box>
     </Container>
   </Box>
 );

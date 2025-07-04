@@ -5,6 +5,7 @@ import Slider from "@mui/material/Slider";
 import { COLORS } from "@/constants/colors";
 import { styled } from "@mui/material/styles";
 import { useForm, Controller } from "react-hook-form";
+import { textFieldsStyles } from "@/components/ContactForm/ContactForm";
 import { Box, Checkbox, Stack, Button, Typography } from "@mui/material";
 import { Card, Container, FormControlLabel, TextField } from "@mui/material";
 
@@ -48,9 +49,9 @@ type CustomPlanForm = {
 const CustomPlans = () => {
   const { handleSubmit, control, watch } = useForm<CustomPlanForm>({
     defaultValues: {
-      cpu: 2,
-      ram: 2,
-      storage: 25,
+      cpu: 256,
+      ram: 512,
+      storage: 1000,
       email: "",
       accept: false,
     },
@@ -71,12 +72,14 @@ const CustomPlans = () => {
     <Box
       sx={{
         width: 1,
+        minHeight: "50vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
+        py: 2,
       }}
     >
-      <Container maxWidth="xl" sx={{ pb: 6, pt: 3 }}>
+      <Container maxWidth="xl">
         <Typography variant="h5" sx={headerTextStyle}>
           НЕ НАШЛИ ПОДХОДЯЩЕГО ТАРИФА?
         </Typography>
@@ -94,13 +97,14 @@ const CustomPlans = () => {
             sx={{
               width: "90%",
               p: 3,
-              mt: 3,
+              mt: 6,
+              borderRadius: 4,
               boxShadow: "0 4px 12px 0 rgba(44, 62, 80, 0.28)",
             }}
           >
             <form onSubmit={handleSubmit(onSubmit)}>
               <Stack
-                direction={{ xs: "column", sm: "row" }}
+                direction={{ xs: "column", md: "row" }}
                 sx={{ alignItems: "center", justifyContent: "space-between" }}
                 spacing={4}
               >
@@ -255,12 +259,20 @@ const CustomPlans = () => {
                           type="email"
                           placeholder="E-mail"
                           required={true}
-                          sx={{ bgcolor: "#E8E8E8", color: COLORS.WHITE }}
+                          sx={{
+                            ...textFieldsStyles,
+                            bgcolor: "#E8E8E8",
+                            color: COLORS.WHITE,
+                          }}
                           fullWidth
                         />
                       )}
                     />
-                    <Stack direction={"row"} sx={{ width: 1 }}>
+                    <Stack
+                      direction={{ xs: "column", lg: "row" }}
+                      sx={{ width: 1 }}
+                      gap={2}
+                    >
                       <Controller
                         name="accept"
                         control={control}
@@ -283,9 +295,11 @@ const CustomPlans = () => {
                         type="submit"
                         variant="contained"
                         sx={{
-                          width: "70%",
+                          whiteSpace: "nowrap",
+                          width: { xs: "100%", lg: "70%" },
                           bgcolor: COLORS.GREEN_DARK,
                           color: COLORS.WHITE,
+                          ":hover": { bgcolor: COLORS.GREEN_LIGHT },
                         }}
                       >
                         Отправить заявку
