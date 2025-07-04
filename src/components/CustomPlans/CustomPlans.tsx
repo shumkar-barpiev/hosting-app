@@ -5,17 +5,8 @@ import Slider from "@mui/material/Slider";
 import { COLORS } from "@/constants/colors";
 import { styled } from "@mui/material/styles";
 import { useForm, Controller } from "react-hook-form";
-import {
-  Card,
-  Box,
-  Stack,
-  Button,
-  Typography,
-  Container,
-  FormControlLabel,
-  Checkbox,
-  TextField,
-} from "@mui/material";
+import { Box, Checkbox, Stack, Button, Typography } from "@mui/material";
+import { Card, Container, FormControlLabel, TextField } from "@mui/material";
 
 const PrettoSlider = styled(Slider)({
   color: COLORS.GREEN_DARK,
@@ -49,7 +40,7 @@ const PrettoSlider = styled(Slider)({
 type CustomPlanForm = {
   cpu: number;
   ram: number;
-  ssd: number;
+  storage: number;
   email: string;
   accept: boolean;
 };
@@ -57,9 +48,9 @@ type CustomPlanForm = {
 const CustomPlans = () => {
   const { handleSubmit, control, watch } = useForm<CustomPlanForm>({
     defaultValues: {
-      cpu: 4,
-      ram: 8192,
-      ssd: 256,
+      cpu: 2,
+      ram: 2,
+      storage: 25,
       email: "",
       accept: false,
     },
@@ -67,12 +58,12 @@ const CustomPlans = () => {
 
   const onSubmit = (data: CustomPlanForm) => {
     console.log("Submitted Data:", data);
-    // alert(`CPU: ${data.cpu} vCPU\nRAM: ${data.ram} GB\nSSD: ${data.ssd} GB`);
+    // alert(`CPU: ${data.cpu} vCPU\nRAM: ${data.ram} GB\nSSD: ${data.storage} GB`);
   };
 
   const cpu = watch("cpu");
   const ram = watch("ram");
-  const ssd = watch("ssd");
+  const storage = watch("storage");
 
   const headerTextStyle = { textAlign: "center", textTransform: "uppercase" };
 
@@ -131,8 +122,7 @@ const CustomPlans = () => {
                       <Typography
                         variant="body1"
                         whiteSpace={"nowrap"}
-                        width={80}
-                        sx={{ fontWeight: "bold" }}
+                        width={100}
                       >
                         CPU
                       </Typography>
@@ -143,9 +133,19 @@ const CustomPlans = () => {
                           <PrettoSlider
                             {...field}
                             valueLabelDisplay="auto"
-                            min={1}
-                            max={32}
-                            step={1}
+                            min={2}
+                            max={256}
+                            step={null}
+                            marks={[
+                              { value: 2, label: "" },
+                              { value: 4, label: "" },
+                              { value: 8, label: "" },
+                              { value: 16, label: "" },
+                              { value: 32, label: "" },
+                              { value: 64, label: "" },
+                              { value: 128, label: "" },
+                              { value: 256, label: "" },
+                            ]}
                           />
                         )}
                       />
@@ -168,8 +168,7 @@ const CustomPlans = () => {
                       <Typography
                         variant="body1"
                         whiteSpace={"nowrap"}
-                        width={80}
-                        sx={{ fontWeight: "bold" }}
+                        width={100}
                       >
                         RAM
                       </Typography>
@@ -180,15 +179,19 @@ const CustomPlans = () => {
                           <PrettoSlider
                             {...field}
                             valueLabelDisplay="auto"
-                            min={4096}
-                            max={65536}
+                            min={2}
+                            max={512}
                             step={null}
                             marks={[
-                              { value: 4096, label: "" },
-                              { value: 8192, label: "" },
-                              { value: 16384, label: "" },
-                              { value: 32768, label: "" },
-                              { value: 65536, label: "" },
+                              { value: 2, label: "" },
+                              { value: 4, label: "" },
+                              { value: 8, label: "" },
+                              { value: 16, label: "" },
+                              { value: 32, label: "" },
+                              { value: 64, label: "" },
+                              { value: 128, label: "" },
+                              { value: 256, label: "" },
+                              { value: 512, label: "" },
                             ]}
                           />
                         )}
@@ -199,7 +202,7 @@ const CustomPlans = () => {
                         width={200}
                       >
                         <span style={{ fontWeight: "bold" }}>{ram} </span>
-                        (MB)
+                        (GB)
                       </Typography>
                     </Stack>
                     <Stack
@@ -212,30 +215,20 @@ const CustomPlans = () => {
                       <Typography
                         variant="body1"
                         whiteSpace={"nowrap"}
-                        width={80}
-                        sx={{ fontWeight: "bold" }}
+                        width={100}
                       >
-                        SSD
+                        Storage
                       </Typography>
                       <Controller
-                        name="ssd"
+                        name="storage"
                         control={control}
                         render={({ field }) => (
                           <PrettoSlider
                             {...field}
                             valueLabelDisplay="auto"
-                            min={32}
-                            max={2048}
-                            step={null}
-                            marks={[
-                              { value: 32, label: "" },
-                              { value: 64, label: "" },
-                              { value: 128, label: "" },
-                              { value: 256, label: "" },
-                              { value: 512, label: "" },
-                              { value: 1024, label: "" },
-                              { value: 2048, label: "" },
-                            ]}
+                            min={25}
+                            max={1000}
+                            step={5}
                           />
                         )}
                       />
@@ -244,7 +237,7 @@ const CustomPlans = () => {
                         whiteSpace={"nowrap"}
                         width={200}
                       >
-                        <span style={{ fontWeight: "bold" }}>{ssd} </span>
+                        <span style={{ fontWeight: "bold" }}>{storage} </span>
                         (GB)
                       </Typography>
                     </Stack>

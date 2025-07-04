@@ -18,7 +18,7 @@ type VpsPlan = {
   monthlyPrice: string;
   yearlyPrice: string;
   features: {
-    ssd: string;
+    storage: string;
     ram: string;
     vcpu: string;
     speed: string;
@@ -32,7 +32,7 @@ const plans: VpsPlan[] = [
     monthlyPrice: "900 сом ",
     yearlyPrice: "10.000 сом ",
     features: {
-      ssd: "15 GB",
+      storage: "15 GB",
       ram: "2 GB",
       vcpu: "2",
       speed: "(3.3) GHz",
@@ -44,7 +44,7 @@ const plans: VpsPlan[] = [
     monthlyPrice: "1.200 сом ",
     yearlyPrice: "14.000 сом ",
     features: {
-      ssd: "30 GB",
+      storage: "30 GB",
       ram: "4 GB",
       vcpu: "4",
       speed: "(3.3) GHz",
@@ -56,7 +56,7 @@ const plans: VpsPlan[] = [
     monthlyPrice: "1.800 сом ",
     yearlyPrice: "21.000 сом ",
     features: {
-      ssd: "60 GB",
+      storage: "60 GB",
       ram: "6 GB",
       vcpu: "6",
       speed: "(3.3) GHz",
@@ -90,7 +90,7 @@ const priceBlock = (price: string, period: string) => (
 
 const featureList = (features: VpsPlan["features"]) => {
   const featureLabels: { key: keyof VpsPlan["features"]; label: string }[] = [
-    { key: "ssd", label: "SSD" },
+    { key: "storage", label: "Storage" },
     { key: "ram", label: "RAM" },
     { key: "vcpu", label: "vCPU" },
     { key: "speed", label: "" },
@@ -216,7 +216,7 @@ const PricingCards = () => (
                 borderBottomRightRadius: "16px",
                 height: "48px",
                 color: "#fff",
-                mt: "auto", // ensures button stays at the bottom
+                mt: "auto",
                 "&:hover": {
                   backgroundColor: COLORS.GREEN_LIGHT,
                 },
