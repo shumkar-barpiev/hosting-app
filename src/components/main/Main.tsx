@@ -3,6 +3,7 @@
 import Image from "next/image";
 import React, { useRef } from "react";
 import { COLORS } from "@/constants/colors";
+import Clients from "@/components/Clients/Clients";
 import ContactForm from "@/components/ContactForm/ContactForm";
 import CustomPlans from "@/components/CustomPlans/CustomPlans";
 import { Button, useTheme, useMediaQuery } from "@mui/material";
@@ -138,6 +139,7 @@ const Main: React.FC = () => {
       <CustomPlans />
       <TariffDetails />
       <AdditionalServices />
+      <Clients />
       <ContactForm />
     </Box>
   );
