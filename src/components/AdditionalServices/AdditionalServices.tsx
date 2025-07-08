@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React from "react";
@@ -5,11 +6,14 @@ import Grid from "@mui/material/Grid";
 import { Box, Card } from "@mui/material";
 import { COLORS } from "@/constants/colors";
 import { Button, Container, Typography } from "@mui/material";
+import { AdditionalServicesValues } from "@/constants/form-constant";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 const additionalServices = [
   {
     id: 1,
     name: "Резервные копии",
+    value: AdditionalServicesValues.Backups,
     price: 700,
     priceCurrency: "сом",
     billingTypes: "разовое",
@@ -17,6 +21,7 @@ const additionalServices = [
   {
     id: 2,
     name: "Администрирование сервера",
+    value: AdditionalServicesValues.ServerManagement,
     price: 1100,
     priceCurrency: "сом",
     billingTypes: "час",
@@ -24,6 +29,7 @@ const additionalServices = [
   {
     id: 3,
     name: "Дополнительный IP-адрес",
+    value: AdditionalServicesValues.AdditionalIP,
     price: 500,
     priceCurrency: "сом",
     billingTypes: "месяц",
@@ -31,7 +37,7 @@ const additionalServices = [
 ];
 
 const dividerStyles = {
-  display: { xs: "none", sm: "block" },
+  display: { xs: "none", md: "block" },
   position: "absolute",
   top: 14,
   right: 0,
@@ -47,10 +53,13 @@ const gridItemStyles = {
   borderRadius: 3,
   position: "relative",
 };
-const AdditionalServices: React.FC = () => {
-  const handleOrderClick = (service: (typeof additionalServices)[0]) => {
-    console.log("Order clicked for service:", service);
-  };
+
+type PropsTypes = {
+  params: Record<string, any>;
+};
+
+const AdditionalServices: React.FC<PropsTypes> = ({ params }) => {
+  const { setValue } = params;
 
   return (
     <Box
@@ -79,12 +88,20 @@ const AdditionalServices: React.FC = () => {
             boxShadow: "0 4px 12px 0 rgba(44, 62, 80, 0.28)",
           }}
         >
-          <Grid container columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+          <Grid
+            container
+            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+            alignItems="stretch"
+          >
             {additionalServices.map((service, index) => (
               <Grid
                 key={service.id}
-                size={{ xs: 12, sm: 4 }}
-                sx={gridItemStyles}
+                size={{ xs: 12, md: 4 }}
+                sx={{
+                  ...gridItemStyles,
+                  display: "flex",
+                  flexDirection: "column",
+                }}
               >
                 <Typography
                   variant="subtitle1"
@@ -99,6 +116,7 @@ const AdditionalServices: React.FC = () => {
                 >
                   {service.name}
                 </Typography>
+                <Box sx={{ flexGrow: 1 }} />
                 <Typography
                   variant="body2"
                   sx={{
@@ -111,7 +129,7 @@ const AdditionalServices: React.FC = () => {
                   <span
                     style={{
                       fontWeight: "bold",
-                      color: COLORS.GREEN_DARK,
+                      color: COLORS.TURQUOISE_DARK,
                       fontSize: "16px",
                     }}
                   >
@@ -119,10 +137,6 @@ const AdditionalServices: React.FC = () => {
                   </span>
                   / {service.billingTypes}
                 </Typography>
-                {index < additionalServices.length - 1 && (
-                  <Box sx={dividerStyles} />
-                )}
-
                 <Button
                   variant="contained"
                   sx={{
@@ -130,13 +144,23 @@ const AdditionalServices: React.FC = () => {
                     height: "40px",
                     borderRadius: "4px",
                     color: COLORS.WHITE,
-                    bgcolor: COLORS.GREEN_DARK,
-                    ":hover": { bgcolor: COLORS.GREEN_LIGHT },
+                    bgcolor: COLORS.TURQUOISE_DARK,
+                    ":hover": { bgcolor: COLORS.TURQUOISE_LIGHT },
+                    mt: "auto",
                   }}
-                  onClick={() => handleOrderClick(service)}
+                  onClick={() => {
+                    setValue("additionalServices", service.value);
+                    document
+                      .getElementById("contact-form")
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                  startIcon={<AddShoppingCartIcon fontSize="large" />}
                 >
                   Заказать
                 </Button>
+                {index < additionalServices.length - 1 && (
+                  <Box sx={dividerStyles} />
+                )}
               </Grid>
             ))}
           </Grid>

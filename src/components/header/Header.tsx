@@ -78,13 +78,13 @@ const Header: React.FC = () => {
                 color="primary"
                 title="Связаться с нами"
                 sx={{
-                  bgcolor: COLORS.GREEN_DARK,
+                  bgcolor: COLORS.TURQUOISE_DARK,
                   color: COLORS.WHITE,
                   width: 44,
                   height: 44,
                   borderRadius: 4,
                   mx: "auto",
-                  ":hover": { color: COLORS.GREEN_DARK },
+                  ":hover": { color: COLORS.TURQUOISE_DARK },
                 }}
                 onClick={() => {
                   document
@@ -97,6 +97,7 @@ const Header: React.FC = () => {
               </IconButton>
             ) : (
               <Button
+                size="small"
                 variant="contained"
                 color="primary"
                 sx={{
@@ -104,17 +105,17 @@ const Header: React.FC = () => {
                   width: { sm: "fit-content" },
                   color: COLORS.WHITE,
                   textTransform: "uppercase",
-                  bgcolor: COLORS.GREEN_DARK,
-                  fontSize: { sm: "1rem" },
+                  bgcolor: COLORS.TURQUOISE_DARK,
                   py: { sm: 1 },
-                  ":hover": { bgcolor: COLORS.GREEN_LIGHT },
-                  borderRadius: 2,
+                  px: 3,
+                  ":hover": { bgcolor: COLORS.TURQUOISE_LIGHT },
                 }}
                 onClick={() => {
                   document
                     .getElementById("contact-form")
                     ?.scrollIntoView({ behavior: "smooth" });
                 }}
+                startIcon={<ConnectWithoutContactIcon fontSize="small" />}
               >
                 Связаться с нами
               </Button>

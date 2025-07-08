@@ -32,7 +32,7 @@ const IdBox = (id: number) => {
         width: 48,
         height: 48,
         color: COLORS.WHITE,
-        bgcolor: COLORS.GREEN_DARK,
+        bgcolor: COLORS.TURQUOISE_DARK,
         borderRadius: "50%",
         display: "flex",
         alignItems: "center",
@@ -51,7 +51,7 @@ const TariffDetails = () => (
     sx={{
       bgcolor: "#33503E0D",
       width: 1,
-      minHeight: "50vh",
+      minHeight: "70vh",
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",

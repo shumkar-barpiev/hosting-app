@@ -1,141 +1,127 @@
+/* eslint-disable @next/next/no-img-element */
+
 "use client";
 
+import { v4 as uuidv4 } from "uuid";
+import { config } from "react-spring";
 import React, { useState } from "react";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import {
-  Box,
-  IconButton,
-  Typography,
-  Fade,
-  Container,
-  Stack,
-} from "@mui/material";
-import { COLORS } from "@/constants/colors";
-
-const clients = [
-  { id: 1, logo: "/clients/kato-logo.png" },
-  { id: 2, logo: "/clients/og-logo.jpg" },
-  { id: 3, logo: "/clients/PIb-img.png" },
-  { id: 4, logo: "/clients/vsemirnyi.png" },
-];
-
-const arrowButtonsStyles = {
-  bgcolor: COLORS.GREEN_DARK,
-  color: "white",
-  boxShadow: 1,
-  borderRadius: 1,
-  width: 32,
-  "&:hover": {
-    color: COLORS.GREEN_DARK,
-  },
-};
-
-const ITEMS_PER_PAGE = 3;
+import { Slide } from "@/components/Clients/types";
+import VerticalCarousel from "@/components/Clients/VerticalCarousel";
+import { Box, Container, useTheme, useMediaQuery } from "@mui/material";
 
 const Clients: React.FC = () => {
-  const [page, setPage] = useState(0);
-  const totalPages = Math.ceil(clients.length / ITEMS_PER_PAGE);
+  const [offsetRadius] = useState(2);
+  const [showNavigation] = useState(true);
+  const [animationConfig] = useState(config.gentle);
 
-  const handlePrev = () => {
-    if (page > 0) setPage((prev) => prev - 1);
-  };
+  const clientImages = [
+    "client4.png",
+    "client2.jpg",
+    "client1.png",
+    "client3.png",
+  ];
 
-  const handleNext = () => {
-    if (page < totalPages - 1) setPage((prev) => prev + 1);
-  };
+  const theme = useTheme();
+  const isLgUp = useMediaQuery(theme.breakpoints.up("lg"));
+  const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
 
-  const visibleClients = clients.slice(
-    page * ITEMS_PER_PAGE,
-    page * ITEMS_PER_PAGE + ITEMS_PER_PAGE
-  );
+  let slides: Slide[] = [];
+  if (isLgUp) {
+    // 3 images per slide
+    for (let i = 0; i < clientImages.length; i += 3) {
+      slides.push({
+        key: uuidv4(),
+        content: (
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            sx={{ width: "100%", gap: 12 }}
+          >
+            {clientImages.slice(i, i + 3).map((filename, idx) => (
+              <img
+                key={filename}
+                src={`/clients/${filename}`}
+                alt={`Client ${i + idx + 1}`}
+                style={{
+                  width: "auto",
+                  maxWidth: "350px",
+                  height: "110px",
+                  objectFit: "contain",
+                }}
+              />
+            ))}
+          </Box>
+        ),
+      });
+    }
+  } else if (isMdUp) {
+    // 2 images per slide
+    for (let i = 0; i < clientImages.length; i += 2) {
+      slides.push({
+        key: uuidv4(),
+        content: (
+          <Box
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            sx={{ width: "100%", gap: 18 }}
+          >
+            {clientImages.slice(i, i + 2).map((filename, idx) => (
+              <img
+                key={filename}
+                src={`/clients/${filename}`}
+                alt={`Client ${i + idx + 1}`}
+                style={{
+                  width: "auto",
+                  maxWidth: "250px",
+                  height: "100px",
+                  objectFit: "contain",
+                }}
+              />
+            ))}
+          </Box>
+        ),
+      });
+    }
+  } else {
+    // 1 image per slide
+    slides = clientImages.map((filename, i) => ({
+      key: uuidv4(),
+      content: (
+        <Box display="flex" justifyContent="center" alignItems="center">
+          <img
+            src={`/clients/${filename}`}
+            alt={`Client ${i + 1}`}
+            style={{
+              width: "auto",
+              maxWidth: "230px",
+              maxHeight: "110px",
+              objectFit: "contain",
+            }}
+          />
+        </Box>
+      ),
+    }));
+  }
 
   return (
-    <Box sx={{ width: 1, py: 6, bgcolor: "#f8fafc", minHeight: "50vh" }}>
+    <Box sx={{ width: 1, py: 6 }}>
       <Container
         maxWidth="xl"
-        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+        sx={{
+          height: "45vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
       >
-        <Typography
-          variant="h5"
-          sx={{ textAlign: "center", mb: 1, textTransform: "uppercase" }}
-        >
-          Нам доверяют
-        </Typography>
-
-        <Stack
-          direction="row"
-          spacing={2}
-          alignItems="center"
-          justifyContent="center"
-          sx={{ width: 1, px: 12 }}
-        >
-          <Box
-            sx={{
-              position: "relative",
-              width: { xs: "90%", lg: "80%" },
-            }}
-          >
-            <Fade key={page} in timeout={2000}>
-              <Box
-                sx={{
-                  p: 1,
-                  display: "flex",
-                  alignItems: "center",
-                  flexDirection: { xs: "column", lg: "row" },
-                  justifyContent: "center",
-                  gap: 2,
-                }}
-              >
-                {visibleClients.map((client) => (
-                  <Box
-                    key={client.id}
-                    component="img"
-                    src={client.logo}
-                    alt={client.id.toString()}
-                    sx={{
-                      bgcolor: "white",
-                      borderRadius: 2,
-                      p: 2,
-                      width: { xs: "90%", sm: 300, md: 420, lg: 270 },
-                      height: { xs: 100, sm: 120, md: 140, lg: 180 },
-                      objectFit: "contain",
-                      mb: 1,
-                      mx: "auto",
-                    }}
-                  />
-                ))}
-              </Box>
-            </Fade>
-          </Box>
-
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 2,
-              alignItems: "center",
-              justifyContent: "center",
-              width: { xs: "10%", lg: "3%" },
-              height: 240,
-            }}
-          >
-            <IconButton
-              onClick={handlePrev}
-              disabled={page === 0}
-              sx={arrowButtonsStyles}
-            >
-              <ArrowUpwardIcon />
-            </IconButton>
-            <IconButton
-              onClick={handleNext}
-              disabled={page >= totalPages - 1}
-              sx={arrowButtonsStyles}
-            >
-              <ArrowDownwardIcon />
-            </IconButton>
-          </Box>
-        </Stack>
+        <VerticalCarousel
+          slides={slides}
+          offsetRadius={offsetRadius}
+          showNavigation={showNavigation}
+          animationConfig={animationConfig}
+        />
       </Container>
     </Box>
   );
