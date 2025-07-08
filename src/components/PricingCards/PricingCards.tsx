@@ -4,6 +4,7 @@ import React from "react";
 import { COLORS } from "@/constants/colors";
 import { Typography, CardContent, Container } from "@mui/material";
 import { Card, Box, Stack, Button, CardHeader } from "@mui/material";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 type VpsPlan = {
   name: string;
@@ -152,12 +153,25 @@ const PricingCards = () => (
               padding: 0,
               margin: 0,
               bgcolor: "inherit",
+              transition: "box-shadow 0.3s, transform 0.3s, background 0.3s",
               ":hover": {
                 cursor: "pointer",
                 boxShadow: "0 8px 24px 0 rgba(44, 62, 80, 0.18)",
                 transform: "translateY(-4px)",
-                transition: "box-shadow 0.3s, transform 0.3s",
                 bgcolor: "white",
+                "& .MuiCardHeader-root": {
+                  backgroundColor: COLORS.GREEN_LIGHT,
+                  transition: "background 0.3s",
+                },
+                "& .MuiCardHeader-title": {
+                  color: COLORS.GREEN_DARK,
+                  transition: "color 0.3s",
+                },
+                "& .MuiButton-root": {
+                  bgcolor: COLORS.GREEN_LIGHT,
+
+                  transition: "background 0.3s, color 0.3s",
+                },
               },
             }}
           >
@@ -179,7 +193,8 @@ const PricingCards = () => (
                 fontWeight: "bold",
                 textAlign: "center",
                 color: COLORS.WHITE,
-                backgroundColor: COLORS.GREEN_LIGHT,
+                backgroundColor: COLORS.GREEN_DARK,
+                transition: "background 0.3s, color 0.3s",
               }}
             />
             <CardContent sx={{ padding: 0, textAlign: "center", flexGrow: 1 }}>
@@ -209,8 +224,8 @@ const PricingCards = () => (
                 mt: "auto",
                 color: COLORS.WHITE,
                 bgcolor: COLORS.GREEN_DARK,
-                ":hover": { bgcolor: COLORS.GREEN_LIGHT },
               }}
+              startIcon={<AddShoppingCartIcon fontSize="large" />}
             >
               ЗАКАЗАТЬ
             </Button>

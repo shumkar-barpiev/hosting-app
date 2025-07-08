@@ -4,6 +4,7 @@ import React from "react";
 import Grid from "@mui/material/Grid";
 import { COLORS } from "@/constants/colors";
 import { useForm, Controller } from "react-hook-form";
+import TelegramIcon from "@mui/icons-material/Telegram";
 import { Box, TextField, MenuItem } from "@mui/material";
 import { Button, Container, Typography } from "@mui/material";
 
@@ -63,6 +64,7 @@ const ContactForm: React.FC = () => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
+        bgcolor: "#33503E0D",
       }}
     >
       <Container maxWidth="xl" sx={{ py: 6 }}>
@@ -166,6 +168,7 @@ const ContactForm: React.FC = () => {
                 color: COLORS.WHITE,
                 ":hover": { bgcolor: COLORS.GREEN_LIGHT },
               }}
+              startIcon={<TelegramIcon fontSize="large" />}
             >
               Отправить заявку
             </Button>

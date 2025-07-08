@@ -5,6 +5,7 @@ import Slider from "@mui/material/Slider";
 import { COLORS } from "@/constants/colors";
 import { styled } from "@mui/material/styles";
 import { useForm, Controller } from "react-hook-form";
+import TelegramIcon from "@mui/icons-material/Telegram";
 import { textFieldsStyles } from "@/components/ContactForm/ContactForm";
 import { Box, Checkbox, Stack, Button, Typography } from "@mui/material";
 import { Card, Container, FormControlLabel, TextField } from "@mui/material";
@@ -301,6 +302,7 @@ const CustomPlans = () => {
                           color: COLORS.WHITE,
                           ":hover": { bgcolor: COLORS.GREEN_LIGHT },
                         }}
+                        startIcon={<TelegramIcon fontSize="large" />}
                       >
                         Отправить заявку
                       </Button>

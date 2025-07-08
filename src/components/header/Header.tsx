@@ -97,6 +97,7 @@ const Header: React.FC = () => {
               </IconButton>
             ) : (
               <Button
+                size="small"
                 variant="contained"
                 color="primary"
                 sx={{
@@ -105,16 +106,16 @@ const Header: React.FC = () => {
                   color: COLORS.WHITE,
                   textTransform: "uppercase",
                   bgcolor: COLORS.GREEN_DARK,
-                  fontSize: { sm: "1rem" },
                   py: { sm: 1 },
+                  px: 3,
                   ":hover": { bgcolor: COLORS.GREEN_LIGHT },
-                  borderRadius: 2,
                 }}
                 onClick={() => {
                   document
                     .getElementById("contact-form")
                     ?.scrollIntoView({ behavior: "smooth" });
                 }}
+                startIcon={<ConnectWithoutContactIcon fontSize="small" />}
               >
                 Связаться с нами
               </Button>

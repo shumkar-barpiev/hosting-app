@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { useRef } from "react";
 import { COLORS } from "@/constants/colors";
 import Clients from "@/components/Clients/Clients";
+import SwipeUpIcon from "@mui/icons-material/SwipeUp";
 import ContactForm from "@/components/ContactForm/ContactForm";
 import CustomPlans from "@/components/CustomPlans/CustomPlans";
 import { Button, useTheme, useMediaQuery } from "@mui/material";
@@ -73,6 +74,7 @@ const Main: React.FC = () => {
                   ":hover": { bgcolor: COLORS.GREEN_LIGHT },
                 }}
                 onClick={handleScrollToPricing}
+                startIcon={<SwipeUpIcon fontSize="large" />}
               >
                 Выбрать тариф
               </Button>

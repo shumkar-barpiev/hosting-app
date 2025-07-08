@@ -5,6 +5,7 @@ import Grid from "@mui/material/Grid";
 import { Box, Card } from "@mui/material";
 import { COLORS } from "@/constants/colors";
 import { Button, Container, Typography } from "@mui/material";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 const additionalServices = [
   {
@@ -31,7 +32,7 @@ const additionalServices = [
 ];
 
 const dividerStyles = {
-  display: { xs: "none", sm: "block" },
+  display: { xs: "none", md: "block" },
   position: "absolute",
   top: 14,
   right: 0,
@@ -79,12 +80,20 @@ const AdditionalServices: React.FC = () => {
             boxShadow: "0 4px 12px 0 rgba(44, 62, 80, 0.28)",
           }}
         >
-          <Grid container columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+          <Grid
+            container
+            columnSpacing={{ xs: 1, sm: 2, md: 3 }}
+            alignItems="stretch"
+          >
             {additionalServices.map((service, index) => (
               <Grid
                 key={service.id}
-                size={{ xs: 12, sm: 4 }}
-                sx={gridItemStyles}
+                size={{ xs: 12, md: 4 }}
+                sx={{
+                  ...gridItemStyles,
+                  display: "flex",
+                  flexDirection: "column",
+                }}
               >
                 <Typography
                   variant="subtitle1"
@@ -99,6 +108,7 @@ const AdditionalServices: React.FC = () => {
                 >
                   {service.name}
                 </Typography>
+                <Box sx={{ flexGrow: 1 }} />
                 <Typography
                   variant="body2"
                   sx={{
@@ -119,10 +129,6 @@ const AdditionalServices: React.FC = () => {
                   </span>
                   / {service.billingTypes}
                 </Typography>
-                {index < additionalServices.length - 1 && (
-                  <Box sx={dividerStyles} />
-                )}
-
                 <Button
                   variant="contained"
                   sx={{
@@ -132,11 +138,16 @@ const AdditionalServices: React.FC = () => {
                     color: COLORS.WHITE,
                     bgcolor: COLORS.GREEN_DARK,
                     ":hover": { bgcolor: COLORS.GREEN_LIGHT },
+                    mt: "auto",
                   }}
                   onClick={() => handleOrderClick(service)}
+                  startIcon={<AddShoppingCartIcon fontSize="large" />}
                 >
                   Заказать
                 </Button>
+                {index < additionalServices.length - 1 && (
+                  <Box sx={dividerStyles} />
+                )}
               </Grid>
             ))}
           </Grid>
