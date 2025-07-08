@@ -69,9 +69,9 @@ const Main: React.FC = () => {
                 variant="contained"
                 sx={{
                   width: "fit-content",
-                  bgcolor: COLORS.GREEN_DARK,
+                  bgcolor: COLORS.TURQUOISE_DARK,
                   color: COLORS.WHITE,
-                  ":hover": { bgcolor: COLORS.GREEN_LIGHT },
+                  ":hover": { bgcolor: COLORS.TURQUOISE_LIGHT },
                 }}
                 onClick={handleScrollToPricing}
                 startIcon={<SwipeUpIcon fontSize="large" />}
@@ -92,6 +92,21 @@ const Main: React.FC = () => {
                 alignItems: "center",
                 justifyContent: "center",
                 animation: "bounce 1.5s infinite",
+                width: {
+                  xs: "100%",
+                  sm: "100%",
+                  md: 420,
+                  lg: 520,
+                  xl: 560,
+                },
+                maxWidth: {
+                  xs: 320,
+                  sm: 400,
+                  md: 420,
+                  lg: 520,
+                  xl: 560,
+                },
+                height: "auto",
                 "@keyframes bounce": {
                   "0%, 100%": { transform: "translateY(0)" },
                   "50%": { transform: "translateY(-20px)" },
@@ -99,11 +114,11 @@ const Main: React.FC = () => {
               }}
             >
               <Image
-                src="/images/main-page-1.png"
+                src="/images/web-developer-hosting.png"
                 alt="main-page"
-                width={380}
-                height={260}
-                style={{ width: "100%", maxWidth: 470, height: "auto" }}
+                width={600}
+                height={360}
+                style={{ width: "100%", height: "auto", maxWidth: "100%" }}
               />
             </Box>
 
@@ -113,6 +128,21 @@ const Main: React.FC = () => {
                 alignItems: "center",
                 justifyContent: "center",
                 animation: "shadowScale 1.5s infinite",
+                width: {
+                  xs: 220,
+                  sm: 320,
+                  md: 360,
+                  lg: 440,
+                  xl: 520,
+                },
+                maxWidth: {
+                  xs: 220,
+                  sm: 320,
+                  md: 360,
+                  lg: 440,
+                  xl: 520,
+                },
+                height: "auto",
                 "@keyframes shadowScale": {
                   "0%, 100%": {
                     transform: "scaleX(1.1) scaleY(1)",
@@ -125,9 +155,9 @@ const Main: React.FC = () => {
               <Image
                 src="/images/main-page-shadow-1.png"
                 alt="main-page"
-                width={260}
-                height={50}
-                style={{ width: "100%", maxWidth: 400, height: "auto" }}
+                width={520}
+                height={40}
+                style={{ width: "100%", height: "auto", maxWidth: "100%" }}
               />
             </Box>
           </Stack>

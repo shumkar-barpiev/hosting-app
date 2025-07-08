@@ -78,13 +78,13 @@ const Header: React.FC = () => {
                 color="primary"
                 title="Связаться с нами"
                 sx={{
-                  bgcolor: COLORS.GREEN_DARK,
+                  bgcolor: COLORS.TURQUOISE_DARK,
                   color: COLORS.WHITE,
                   width: 44,
                   height: 44,
                   borderRadius: 4,
                   mx: "auto",
-                  ":hover": { color: COLORS.GREEN_DARK },
+                  ":hover": { color: COLORS.TURQUOISE_DARK },
                 }}
                 onClick={() => {
                   document
@@ -105,10 +105,10 @@ const Header: React.FC = () => {
                   width: { sm: "fit-content" },
                   color: COLORS.WHITE,
                   textTransform: "uppercase",
-                  bgcolor: COLORS.GREEN_DARK,
+                  bgcolor: COLORS.TURQUOISE_DARK,
                   py: { sm: 1 },
                   px: 3,
-                  ":hover": { bgcolor: COLORS.GREEN_LIGHT },
+                  ":hover": { bgcolor: COLORS.TURQUOISE_LIGHT },
                 }}
                 onClick={() => {
                   document

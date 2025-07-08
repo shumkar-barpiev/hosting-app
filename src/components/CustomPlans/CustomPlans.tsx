@@ -11,10 +11,10 @@ import { Box, Checkbox, Stack, Button, Typography } from "@mui/material";
 import { Card, Container, FormControlLabel, TextField } from "@mui/material";
 
 const PrettoSlider = styled(Slider)({
-  color: COLORS.GREEN_DARK,
+  color: COLORS.TURQUOISE_DARK,
   height: 8,
   "& .MuiSlider-track": {
-    backgroundColor: COLORS.GREEN_DARK,
+    backgroundColor: COLORS.TURQUOISE_DARK,
     border: "none",
   },
   "& .MuiSlider-rail": {
@@ -24,11 +24,11 @@ const PrettoSlider = styled(Slider)({
   "& .MuiSlider-thumb": {
     height: 24,
     width: 24,
-    backgroundColor: COLORS.GREEN_DARK,
+    backgroundColor: COLORS.TURQUOISE_DARK,
     border: "1px solid currentColor",
     "&:focus, &:hover, &.Mui-active, &.Mui-focusVisible": {
       boxShadow: "inherit",
-      backgroundColor: COLORS.GREEN_DARK,
+      backgroundColor: COLORS.TURQUOISE_DARK,
     },
   },
   "& .MuiSlider-valueLabel": {
@@ -298,9 +298,9 @@ const CustomPlans = () => {
                         sx={{
                           whiteSpace: "nowrap",
                           width: { xs: "100%", lg: "70%" },
-                          bgcolor: COLORS.GREEN_DARK,
+                          bgcolor: COLORS.TURQUOISE_DARK,
                           color: COLORS.WHITE,
-                          ":hover": { bgcolor: COLORS.GREEN_LIGHT },
+                          ":hover": { bgcolor: COLORS.TURQUOISE_LIGHT },
                         }}
                         startIcon={<TelegramIcon fontSize="large" />}
                       >

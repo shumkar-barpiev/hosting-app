@@ -3,10 +3,12 @@
 import React from "react";
 import Grid from "@mui/material/Grid";
 import { COLORS } from "@/constants/colors";
+import { MailType } from "@/request/contact-api";
 import { useForm, Controller } from "react-hook-form";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import { Box, TextField, MenuItem } from "@mui/material";
 import { Button, Container, Typography } from "@mui/material";
+import { useMailerViewModel } from "@/viewModels/mailerViewModel";
 
 type ContactFormFields = {
   name: string;
@@ -21,23 +23,25 @@ const TARIFF_OPTIONS = [
 ];
 
 export const textFieldsStyles = {
+  bgcolor: COLORS.WHITE,
   "& .MuiInputLabel-root.Mui-focused": {
-    color: COLORS.GREEN_DARK,
+    color: COLORS.TURQUOISE_DARK,
   },
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
       borderColor: "none",
     },
     "&:hover fieldset": {
-      borderColor: COLORS.GREEN_DARK,
+      borderColor: COLORS.TURQUOISE_DARK,
     },
     "&.Mui-focused fieldset": {
-      borderColor: COLORS.GREEN_DARK,
+      borderColor: COLORS.TURQUOISE_DARK,
     },
   },
 };
 
 const ContactForm: React.FC = () => {
+  const { sendMail } = useMailerViewModel();
   const { handleSubmit, control, reset } = useForm<ContactFormFields>({
     defaultValues: {
       name: "",
@@ -47,9 +51,20 @@ const ContactForm: React.FC = () => {
   });
 
   const onSubmit = (data: ContactFormFields) => {
-    alert(
-      `Name: ${data.name}\nEmail: ${data.email}\nTariff: ${TARIFF_OPTIONS.find((t) => t.value === data.tariff)?.label}`
-    );
+    const payload = {
+      type: MailType.TariffPlans,
+      email: data.email,
+      message: `Контактное лицо: ${data.name}\nТариф VPS: ${data.tariff}`,
+    };
+
+    sendMail(payload, (response, error) => {
+      if (error) {
+        console.error("Error sending contact form:", error);
+      } else {
+        console.log("Contact form sent successfully:", response);
+      }
+    });
+
     reset();
   };
 
@@ -60,7 +75,7 @@ const ContactForm: React.FC = () => {
       onSubmit={handleSubmit(onSubmit)}
       sx={{
         width: 1,
-        minHeight: "50vh",
+        minHeight: "70vh",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -164,9 +179,9 @@ const ContactForm: React.FC = () => {
               fullWidth
               sx={{
                 height: 54,
-                bgcolor: COLORS.GREEN_DARK,
+                bgcolor: COLORS.TURQUOISE_DARK,
                 color: COLORS.WHITE,
-                ":hover": { bgcolor: COLORS.GREEN_LIGHT },
+                ":hover": { bgcolor: COLORS.TURQUOISE_LIGHT },
               }}
               startIcon={<TelegramIcon fontSize="large" />}
             >

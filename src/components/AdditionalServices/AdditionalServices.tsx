@@ -121,7 +121,7 @@ const AdditionalServices: React.FC = () => {
                   <span
                     style={{
                       fontWeight: "bold",
-                      color: COLORS.GREEN_DARK,
+                      color: COLORS.TURQUOISE_DARK,
                       fontSize: "16px",
                     }}
                   >
@@ -136,8 +136,8 @@ const AdditionalServices: React.FC = () => {
                     height: "40px",
                     borderRadius: "4px",
                     color: COLORS.WHITE,
-                    bgcolor: COLORS.GREEN_DARK,
-                    ":hover": { bgcolor: COLORS.GREEN_LIGHT },
+                    bgcolor: COLORS.TURQUOISE_DARK,
+                    ":hover": { bgcolor: COLORS.TURQUOISE_LIGHT },
                     mt: "auto",
                   }}
                   onClick={() => handleOrderClick(service)}

@@ -69,7 +69,7 @@ const priceBlock = (price: string, period: string) => (
     <span
       style={{
         fontWeight: "bold",
-        color: COLORS.GREEN_DARK,
+        color: COLORS.TURQUOISE_DARK,
         fontSize: "16px",
       }}
     >
@@ -100,7 +100,7 @@ const featureList = (features: VpsPlan["features"]) => {
           <span
             style={{
               fontWeight: "bold",
-              color: COLORS.GREEN_DARK,
+              color: COLORS.TURQUOISE_DARK,
               marginLeft: label ? "4px" : 0,
             }}
           >
@@ -160,15 +160,15 @@ const PricingCards = () => (
                 transform: "translateY(-4px)",
                 bgcolor: "white",
                 "& .MuiCardHeader-root": {
-                  backgroundColor: COLORS.GREEN_LIGHT,
+                  backgroundColor: COLORS.TURQUOISE_LIGHT,
                   transition: "background 0.3s",
                 },
                 "& .MuiCardHeader-title": {
-                  color: COLORS.GREEN_DARK,
+                  color: COLORS.TURQUOISE_DARK,
                   transition: "color 0.3s",
                 },
                 "& .MuiButton-root": {
-                  bgcolor: COLORS.GREEN_LIGHT,
+                  bgcolor: COLORS.TURQUOISE_LIGHT,
 
                   transition: "background 0.3s, color 0.3s",
                 },
@@ -193,7 +193,7 @@ const PricingCards = () => (
                 fontWeight: "bold",
                 textAlign: "center",
                 color: COLORS.WHITE,
-                backgroundColor: COLORS.GREEN_DARK,
+                backgroundColor: COLORS.TURQUOISE_DARK,
                 transition: "background 0.3s, color 0.3s",
               }}
             />
@@ -223,7 +223,7 @@ const PricingCards = () => (
                 height: "48px",
                 mt: "auto",
                 color: COLORS.WHITE,
-                bgcolor: COLORS.GREEN_DARK,
+                bgcolor: COLORS.TURQUOISE_DARK,
               }}
               startIcon={<AddShoppingCartIcon fontSize="large" />}
             >

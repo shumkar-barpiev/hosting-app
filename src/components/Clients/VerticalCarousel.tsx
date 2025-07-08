@@ -12,14 +12,14 @@ import { Box, Stack, IconButton, Typography } from "@mui/material";
 const mod = (a: number, b: number) => ((a % b) + b) % b;
 
 const arrowButtonsStyles = {
-  bgcolor: COLORS.GREEN_DARK,
+  bgcolor: COLORS.TURQUOISE_DARK,
   color: "white",
   boxShadow: 1,
   borderRadius: 1,
   width: 28,
   height: 36,
   "&:hover": {
-    color: COLORS.GREEN_DARK,
+    color: COLORS.TURQUOISE_DARK,
   },
 };
 
