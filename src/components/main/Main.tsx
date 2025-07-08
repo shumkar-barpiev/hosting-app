@@ -2,9 +2,11 @@
 
 import Image from "next/image";
 import React, { useRef } from "react";
+import { useForm } from "react-hook-form";
 import { COLORS } from "@/constants/colors";
 import Clients from "@/components/Clients/Clients";
 import SwipeUpIcon from "@mui/icons-material/SwipeUp";
+import { ContactFormFields } from "@/constants/form-constant";
 import ContactForm from "@/components/ContactForm/ContactForm";
 import CustomPlans from "@/components/CustomPlans/CustomPlans";
 import { Button, useTheme, useMediaQuery } from "@mui/material";
@@ -21,6 +23,24 @@ const Main: React.FC = () => {
 
   const handleScrollToPricing = () => {
     pricingRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const { handleSubmit, control, reset, setValue } = useForm<ContactFormFields>(
+    {
+      defaultValues: {
+        name: "",
+        email: "",
+        tariff: "",
+        additionalServices: "",
+      },
+    }
+  );
+
+  const params = {
+    reset,
+    control,
+    setValue,
+    handleSubmit,
   };
 
   return (
@@ -165,14 +185,14 @@ const Main: React.FC = () => {
       </Container>
 
       <Box ref={pricingRef}>
-        <PricingCards />
+        <PricingCards params={params} />
       </Box>
 
       <CustomPlans />
       <TariffDetails />
-      <AdditionalServices />
+      <AdditionalServices params={params} />
       <Clients />
-      <ContactForm />
+      <ContactForm params={params} />
     </Box>
   );
 };

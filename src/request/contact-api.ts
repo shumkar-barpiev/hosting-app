@@ -9,7 +9,7 @@ export enum MailType {
 
 export const sendContactForm = async (
   payload: Record<string, any>,
-  callback: (response: any, error?: any) => void
+  callback: (response: any) => void
 ) => {
   try {
     const response = await http("/api/contact", {
@@ -18,11 +18,13 @@ export const sendContactForm = async (
     });
     if (response.ok) {
       const res = await response.json();
-      callback(res, undefined);
+      callback(res);
     } else {
-      callback(null, { status: response.status, message: response.statusText });
+      callback({ status: -1 });
+      throw new Error(`${response.status} ${response.statusText}`);
     }
   } catch (error: unknown) {
-    callback(null, error);
+    console.log(error);
+    callback({ status: -1 });
   }
 };

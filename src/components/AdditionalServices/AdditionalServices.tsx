@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React from "react";
@@ -5,12 +6,14 @@ import Grid from "@mui/material/Grid";
 import { Box, Card } from "@mui/material";
 import { COLORS } from "@/constants/colors";
 import { Button, Container, Typography } from "@mui/material";
+import { AdditionalServicesValues } from "@/constants/form-constant";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 
 const additionalServices = [
   {
     id: 1,
     name: "Резервные копии",
+    value: AdditionalServicesValues.Backups,
     price: 700,
     priceCurrency: "сом",
     billingTypes: "разовое",
@@ -18,6 +21,7 @@ const additionalServices = [
   {
     id: 2,
     name: "Администрирование сервера",
+    value: AdditionalServicesValues.ServerManagement,
     price: 1100,
     priceCurrency: "сом",
     billingTypes: "час",
@@ -25,6 +29,7 @@ const additionalServices = [
   {
     id: 3,
     name: "Дополнительный IP-адрес",
+    value: AdditionalServicesValues.AdditionalIP,
     price: 500,
     priceCurrency: "сом",
     billingTypes: "месяц",
@@ -48,10 +53,13 @@ const gridItemStyles = {
   borderRadius: 3,
   position: "relative",
 };
-const AdditionalServices: React.FC = () => {
-  const handleOrderClick = (service: (typeof additionalServices)[0]) => {
-    console.log("Order clicked for service:", service);
-  };
+
+type PropsTypes = {
+  params: Record<string, any>;
+};
+
+const AdditionalServices: React.FC<PropsTypes> = ({ params }) => {
+  const { setValue } = params;
 
   return (
     <Box
@@ -140,7 +148,12 @@ const AdditionalServices: React.FC = () => {
                     ":hover": { bgcolor: COLORS.TURQUOISE_LIGHT },
                     mt: "auto",
                   }}
-                  onClick={() => handleOrderClick(service)}
+                  onClick={() => {
+                    setValue("additionalServices", service.value);
+                    document
+                      .getElementById("contact-form")
+                      ?.scrollIntoView({ behavior: "smooth" });
+                  }}
                   startIcon={<AddShoppingCartIcon fontSize="large" />}
                 >
                   Заказать

@@ -5,10 +5,10 @@ import { sendContactForm } from "@/request/contact-api";
 export const useMailerViewModel = () => {
   const sendMail = (
     payload: Record<string, any>,
-    callback: (response: any, error: any) => void
+    callback: (response: any) => void
   ) => {
-    sendContactForm(payload, (response, error) => {
-      callback(response, error);
+    sendContactForm(payload, (response) => {
+      callback(response);
     });
   };
 
