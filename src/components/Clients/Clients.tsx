@@ -4,7 +4,7 @@
 
 import { v4 as uuidv4 } from "uuid";
 import { config } from "react-spring";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Slide } from "@/components/Clients/types";
 import VerticalCarousel from "@/components/Clients/VerticalCarousel";
 import { Box, Container, useTheme, useMediaQuery } from "@mui/material";
@@ -12,6 +12,7 @@ import { Box, Container, useTheme, useMediaQuery } from "@mui/material";
 const Clients: React.FC = () => {
   const [offsetRadius] = useState(2);
   const [showNavigation] = useState(true);
+  const [isClient, setIsClient] = useState(false);
   const [animationConfig] = useState(config.gentle);
 
   const clientImages = [
@@ -104,6 +105,12 @@ const Clients: React.FC = () => {
       ),
     }));
   }
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return null;
 
   return (
     <Box sx={{ width: 1, py: 6 }}>
