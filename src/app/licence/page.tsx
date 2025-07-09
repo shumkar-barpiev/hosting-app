@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import { Box } from "@mui/material";
+import Licence from "@/components/Licence/Licence";
 
 const page = () => {
-  return <Box sx={{ height: "100vh" }}>licence content</Box>;
+  return <Licence />;
 };
 
 export default page;

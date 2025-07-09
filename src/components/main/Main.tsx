@@ -9,17 +9,14 @@ import SwipeUpIcon from "@mui/icons-material/SwipeUp";
 import { ContactFormFields } from "@/constants/form-constant";
 import ContactForm from "@/components/ContactForm/ContactForm";
 import CustomPlans from "@/components/CustomPlans/CustomPlans";
-import { Button, useTheme, useMediaQuery } from "@mui/material";
+import { Button } from "@mui/material";
 import PricingCards from "@/components/PricingCards/PricingCards";
 import { Box, Stack, Container, Typography } from "@mui/material";
 import TariffDetails from "@/components/TariffDetails/TariffDetails";
 import AdditionalServices from "@/components/AdditionalServices/AdditionalServices";
 
 const Main: React.FC = () => {
-  const theme = useTheme();
   const pricingRef = useRef<HTMLDivElement>(null);
-  const isXs = useMediaQuery(theme.breakpoints.down("sm"));
-  const isMd = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleScrollToPricing = () => {
     pricingRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -66,7 +63,7 @@ const Main: React.FC = () => {
             }}
           >
             <Typography
-              variant={isXs ? "h4" : isMd ? "h3" : "h2"}
+              variant="h2"
               textAlign={"left"}
               maxWidth={{ xs: "100%", md: "790px" }}
               sx={{
@@ -74,6 +71,12 @@ const Main: React.FC = () => {
                 letterSpacing: 1,
                 fontWeight: 500,
                 color: "#374151",
+                fontSize: {
+                  xs: "2rem",
+                  sm: "2.5rem",
+                  lg: "3rem",
+                  xl: "3.5rem",
+                },
               }}
             >
               Инфраструктура VPS, которой доверяют компании
