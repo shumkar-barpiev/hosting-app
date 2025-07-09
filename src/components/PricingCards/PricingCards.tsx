@@ -3,66 +3,10 @@
 
 import React from "react";
 import { COLORS } from "@/constants/colors";
-import { TariffValues } from "@/constants/form-constant";
+import { plans, VpsPlan } from "@/constants/form-constant";
 import { Typography, CardContent, Container } from "@mui/material";
 import { Card, Box, Stack, Button, CardHeader } from "@mui/material";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-
-type VpsPlan = {
-  name: string;
-  value: string;
-  monthlyPrice: string;
-  yearlyPrice: string;
-  features: {
-    storage: string;
-    ram: string;
-    vcpu: string;
-    speed: string;
-    os: string;
-  };
-};
-
-const plans: VpsPlan[] = [
-  {
-    name: "VPS Small",
-    value: TariffValues.VPS_Small,
-    monthlyPrice: "900 сом ",
-    yearlyPrice: "10.000 сом ",
-    features: {
-      storage: "15 GB",
-      ram: "2 GB",
-      vcpu: "2",
-      speed: "(3.3) GHz",
-      os: "LIN/WIN",
-    },
-  },
-  {
-    name: "VPS Middle",
-    value: TariffValues.VPS_Medium,
-    monthlyPrice: "1.200 сом ",
-    yearlyPrice: "14.000 сом ",
-    features: {
-      storage: "30 GB",
-      ram: "4 GB",
-      vcpu: "4",
-      speed: "(3.3) GHz",
-      os: "LIN/WIN",
-    },
-  },
-  {
-    name: "VPS Large",
-    value: TariffValues.VPS_Large,
-    monthlyPrice: "1.800 сом ",
-    yearlyPrice: "21.000 сом ",
-    features: {
-      storage: "60 GB",
-      ram: "6 GB",
-      vcpu: "6",
-      speed: "(3.3) GHz",
-      os: "LIN/WIN",
-    },
-  },
-];
 
 const priceBlock = (price: string, period: string) => (
   <Stack

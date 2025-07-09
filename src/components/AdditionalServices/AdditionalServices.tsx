@@ -6,35 +6,8 @@ import Grid from "@mui/material/Grid";
 import { Box, Card } from "@mui/material";
 import { COLORS } from "@/constants/colors";
 import { Button, Container, Typography } from "@mui/material";
-import { AdditionalServicesValues } from "@/constants/form-constant";
+import { additionalServices } from "@/constants/form-constant";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-
-const additionalServices = [
-  {
-    id: 1,
-    name: "Резервные копии",
-    value: AdditionalServicesValues.Backups,
-    price: 700,
-    priceCurrency: "сом",
-    billingTypes: "разовое",
-  },
-  {
-    id: 2,
-    name: "Администрирование сервера",
-    value: AdditionalServicesValues.ServerManagement,
-    price: 1100,
-    priceCurrency: "сом",
-    billingTypes: "час",
-  },
-  {
-    id: 3,
-    name: "Дополнительный IP-адрес",
-    value: AdditionalServicesValues.AdditionalIP,
-    price: 500,
-    priceCurrency: "сом",
-    billingTypes: "месяц",
-  },
-];
 
 const dividerStyles = {
   display: { xs: "none", md: "block" },

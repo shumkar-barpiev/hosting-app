@@ -5,18 +5,17 @@ import React from "react";
 import Grid from "@mui/material/Grid";
 import { enqueueSnackbar } from "notistack";
 import { COLORS } from "@/constants/colors";
-import { MailType } from "@/request/contact-api";
 import { Controller } from "react-hook-form";
+import { Box, TextField } from "@mui/material";
+import { MailType } from "@/request/contact-api";
+import Autocomplete from "@mui/material/Autocomplete";
 import TelegramIcon from "@mui/icons-material/Telegram";
-import { Box, TextField, MenuItem } from "@mui/material";
+import { getMailHtml, mailHeader } from "@/utils/mail-html";
 import { Button, Container, Typography } from "@mui/material";
 import LoadingBackdrop from "@/components/other/LoadingBackdrop";
 import { useMailerViewModel } from "@/viewModels/mailerViewModel";
-import {
-  TARIFF_OPTIONS,
-  ContactFormFields,
-  ADDITIONAL_SERVICES_OPTIONS,
-} from "@/constants/form-constant";
+import { ADDITIONAL_SERVICES_OPTIONS } from "@/constants/form-constant";
+import { TARIFF_OPTIONS, ContactFormFields } from "@/constants/form-constant";
 
 export const textFieldsStyles = {
   bgcolor: COLORS.WHITE,
@@ -47,15 +46,28 @@ type PropsTypes = {
 const ContactForm: React.FC<PropsTypes> = ({ params }) => {
   const { handleSubmit, reset, control } = params;
   const { sendMail } = useMailerViewModel();
-
   const [loading, setLoading] = React.useState(false);
 
   const onSubmit = (data: ContactFormFields) => {
     setLoading(true);
+    const mailHead = mailHeader(data);
+    const pricingCardBody = getMailHtml(MailType.TariffPlans, data);
+    const additionalServiceBody =
+      data.additionalServices !== ""
+        ? getMailHtml(MailType.AdditionalServices, data)
+        : "";
+
+    const message = `
+      <div style="padding: 10px, display: flex; flex-direction: column; justify-content: center; align-items: center;"> 
+        ${mailHead}
+        ${pricingCardBody}
+        ${additionalServiceBody}
+      </div>
+      `;
+
     const payload = {
-      type: MailType.TariffPlans,
       email: data.email,
-      message: `Контактное лицо: ${data.name}\nТариф VPS: ${data.tariff}`,
+      message,
     };
 
     sendMail(payload, (response) => {
@@ -72,7 +84,7 @@ const ContactForm: React.FC<PropsTypes> = ({ params }) => {
   };
 
   return (
-    <>
+    <Box>
       <LoadingBackdrop open={loading} />
       <Box
         id="contact-form"
@@ -158,22 +170,34 @@ const ContactForm: React.FC<PropsTypes> = ({ params }) => {
                 name="tariff"
                 control={control}
                 render={({ field }) => (
-                  <TextField
-                    {...field}
-                    select
-                    label="Тариф VPS"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    size="medium"
-                    sx={textFieldsStyles}
-                  >
-                    {TARIFF_OPTIONS.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
+                  <Box>
+                    <Autocomplete
+                      options={TARIFF_OPTIONS}
+                      getOptionLabel={(option) => option.label}
+                      isOptionEqualToValue={(option, value) =>
+                        option.value === value.value
+                      }
+                      value={
+                        TARIFF_OPTIONS.find(
+                          (opt) => opt.value === field.value
+                        ) || null
+                      }
+                      onChange={(_, newValue) =>
+                        field.onChange(newValue ? newValue.value : "")
+                      }
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          label="Тариф VPS"
+                          variant="outlined"
+                          required
+                          fullWidth
+                          size="medium"
+                          sx={textFieldsStyles}
+                        />
+                      )}
+                    />
+                  </Box>
                 )}
               />
             </Grid>
@@ -182,21 +206,33 @@ const ContactForm: React.FC<PropsTypes> = ({ params }) => {
                 name="additionalServices"
                 control={control}
                 render={({ field }) => (
-                  <TextField
-                    {...field}
-                    select
-                    label="Дополнительные услуги"
-                    variant="outlined"
-                    fullWidth
-                    size="medium"
-                    sx={textFieldsStyles}
-                  >
-                    {ADDITIONAL_SERVICES_OPTIONS.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
-                      </MenuItem>
-                    ))}
-                  </TextField>
+                  <Box>
+                    <Autocomplete
+                      options={ADDITIONAL_SERVICES_OPTIONS}
+                      getOptionLabel={(option) => option.label}
+                      isOptionEqualToValue={(option, value) =>
+                        option.value === value.value
+                      }
+                      value={
+                        ADDITIONAL_SERVICES_OPTIONS.find(
+                          (opt) => opt.value === field.value
+                        ) || null
+                      }
+                      onChange={(_, newValue) =>
+                        field.onChange(newValue ? newValue.value : "")
+                      }
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          label="Дополнительные услуги"
+                          variant="outlined"
+                          fullWidth
+                          size="medium"
+                          sx={textFieldsStyles}
+                        />
+                      )}
+                    />
+                  </Box>
                 )}
               />
             </Grid>
@@ -219,7 +255,7 @@ const ContactForm: React.FC<PropsTypes> = ({ params }) => {
           </Grid>
         </Container>
       </Box>
-    </>
+    </Box>
   );
 };
 

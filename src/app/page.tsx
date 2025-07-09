@@ -5,7 +5,7 @@ import Snackbar from "@/components/other/Snackbar";
 export default function Home() {
   return (
     <>
-      <Main />;
+      <Main />
       <Snackbar />
     </>
   );
